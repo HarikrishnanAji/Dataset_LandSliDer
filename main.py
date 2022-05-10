@@ -1,5 +1,5 @@
 import csv
-
+import numpy as np
 fields = ['slope', 'vibration', 'moisture']
 
 slope = [0	,1	,2	,6	,10	,15	,16	,18	,20	,24	,25	,30	,35	,38	,42	,45	,47	,48	,50	,52	,54	,55	,60	,65	,70]
@@ -23,3 +23,10 @@ with open('records.csv','w',newline='') as csvfile:
     csvwriter.writerow(fields)
     # writing the data res
     csvwriter.writerows(res)
+
+    fields["new2"] = np.where(
+        (fields.slope > 45) & (fields.vibration > 0.1) & (fields.moisture > 65),
+        "Safe",
+        "Danger"
+    )
+    fields.head()
