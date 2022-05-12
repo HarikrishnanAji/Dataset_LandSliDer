@@ -14,10 +14,20 @@ for i in range(1, len(value)):
 	vib = float(value[i][1])
 	moist = float(value[i][2])
 
-	if (slope < 45) and (vib < 1) and (moist < 65):
-		res.append([slope, vib, moist, 1])
+
+
+
+	if (slope > 45):
+
+		if (vib > 1) or (moist > 65):
+			res.append([slope, vib, moist, 0])
+		else:
+			res.append([slope, vib, moist, 1])
+
 	else:
-		res.append([slope, vib, moist, 0])
+		res.append([slope, vib, moist, 1])
+
+
 
 
 with open("test.csv", "w",newline='') as f:
